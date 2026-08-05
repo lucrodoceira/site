@@ -125,8 +125,12 @@
   /* No celular o video vertical empurrava preco e CTA pra fora da primeira tela.
      Corta a altura e ancora no topo, que e onde a tela do app aparece. */
   @media (max-width:560px){
-    .device{max-width:250px;margin-left:auto;margin-right:auto}
-    .device .shot{height:400px;object-fit:cover;object-position:top center}
+    .device{max-width:208px;margin:6px auto 4px}
+    .device .shot{height:300px;object-fit:cover;object-position:top center}
+    .hero{padding-top:18px}
+    .hero h1{font-size:clamp(28px,6.6vw,40px)}
+    .hero .sub{font-size:15px;margin-top:8px}
+    .hero-cap{font-size:13px;margin-top:8px}
   }
   .hero-cap{font-family:var(--disp);font-weight:600;font-style:italic;font-size:15px;color:var(--ink-soft);margin:12px 0 0}
   .marquee{max-width:660px;margin:0 auto;overflow-x:auto;padding:6px 0 12px;
