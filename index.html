@@ -122,23 +122,6 @@
   footer .logo{font-family:var(--disp);font-weight:800;font-size:17px;color:var(--ink)}
 
   .device .shot{width:100%;height:auto;display:block;border-radius:20px}
-  /* Ilustracao de uso. NAO e prova social: a legenda declara que e imagem
-     de IA, e ela nunca fica perto de aspas, nome ou "resultado de cliente". */
-  .ilustra{margin:26px auto 0;max-width:380px;text-align:center}
-  .ilustra img{width:100%;height:auto;display:block;border-radius:22px;
-    box-shadow:0 18px 40px rgba(90,40,50,.18)}
-  .ilustra figcaption{font-family:var(--body);font-size:12.5px;color:var(--ink-soft);
-    margin-top:10px;line-height:1.45}
-  /* No celular o video vertical empurrava preco e CTA pra fora da primeira tela.
-     Corta a altura e ancora no topo, que e onde a tela do app aparece. */
-  @media (max-width:560px){
-    .device{max-width:208px;margin:6px auto 4px}
-    .device .shot{height:300px;object-fit:cover;object-position:top center}
-    .hero{padding-top:18px}
-    .hero h1{font-size:clamp(28px,6.6vw,40px)}
-    .hero .sub{font-size:15px;margin-top:8px}
-    .hero-cap{font-size:13px;margin-top:8px}
-  }
   .hero-cap{font-family:var(--disp);font-weight:600;font-style:italic;font-size:15px;color:var(--ink-soft);margin:12px 0 0}
   .marquee{max-width:660px;margin:0 auto;overflow-x:auto;padding:6px 0 12px;
     -webkit-overflow-scrolling:touch;scrollbar-width:none;
@@ -157,13 +140,27 @@
   .wacap{text-align:center;font-size:13px;margin:12px 0 0}
 
 </style>
+
+<!-- Utmify: captura e persiste as UTMs do clique do anuncio para o painel de leitura.
+     Nao dispara evento de conversao (o Purchase sai so pela CAPI nativa da Cakto). -->
+<script>
+  window.pixelId = "g1A7RRyqHo8hLpeWAQAfe0fLdSBiRwi1UQmB";
+  (function(){
+    var a = document.createElement("script");
+    a.setAttribute("async", "");
+    a.setAttribute("defer", "");
+    a.setAttribute("src", "https://cdn.utmify.com.br/scripts/utms/latest.js");
+    a.setAttribute("data-utmify-prevent-subids", "");
+    document.head.appendChild(a);
+  })();
+</script>
 </head>
 <body>
 
 <nav>
   <div class="in">
     <span class="logo">🎂 Lucro Doceira<span class="dot">.</span></span>
-    <a class="navcta" data-checkout href="#">Quero por R$ 37</a>
+    <a class="navcta" data-checkout href="#">Quero meu preço certo</a>
   </div>
 </nav>
 
@@ -198,9 +195,6 @@
       <div class="passo"><div class="n">2</div><b>Soma o que ninguém soma</b><span>O seu tempo, o gás, a embalagem. É aqui que a maioria perde dinheiro.</span></div>
       <div class="passo"><div class="n">3</div><b>Sai o preço, com lucro</b><span>E o orçamento pronto pra mandar no WhatsApp do cliente.</span></div>
     </div>
-    <figure class="ilustra">
-      <img src="img/confeiteira-usando.jpeg" alt="Confeiteira com o celular na mão mostrando a tela da calculadora, com o preço por unidade e o preço do cento" loading="lazy" width="820" height="1200">
-    </figure>
   </div>
 </section>
 
