@@ -122,6 +122,12 @@
   footer .logo{font-family:var(--disp);font-weight:800;font-size:17px;color:var(--ink)}
 
   .device .shot{width:100%;height:auto;display:block;border-radius:20px}
+  /* No celular o video vertical empurrava preco e CTA pra fora da primeira tela.
+     Corta a altura e ancora no topo, que e onde a tela do app aparece. */
+  @media (max-width:560px){
+    .device{max-width:250px;margin-left:auto;margin-right:auto}
+    .device .shot{height:400px;object-fit:cover;object-position:top center}
+  }
   .hero-cap{font-family:var(--disp);font-weight:600;font-style:italic;font-size:15px;color:var(--ink-soft);margin:12px 0 0}
   .marquee{max-width:660px;margin:0 auto;overflow-x:auto;padding:6px 0 12px;
     -webkit-overflow-scrolling:touch;scrollbar-width:none;
@@ -146,7 +152,7 @@
 <nav>
   <div class="in">
     <span class="logo">🎂 Lucro Doceira<span class="dot">.</span></span>
-    <a class="navcta" data-checkout href="#">Quero meu preço certo</a>
+    <a class="navcta" data-checkout href="#">Quero por R$ 37</a>
   </div>
 </nav>
 
