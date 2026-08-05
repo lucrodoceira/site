@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="facebook-domain-verification" content="j4efh7y1sh2iw3ds1d8lffhwqk7kz2" />
+<title>Lucro Doceira | Calculadora de Preço pra confeitaria</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E%F0%9F%8E%82%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6efe4; --paper2:#fffdf9; --card:#fffdf9;
+    --ink:#3a2a22; --ink-soft:#8a7869; --line:#e8ddcb;
+    --berry:#c23a5b; --berry-deep:#9c2c48; --caramel:#dd9455; --cream:#fbf5ea;
+    --plum:#40222f;
+    --shadow:0 18px 40px rgba(120,70,50,.14); --shadow-sm:0 6px 18px rgba(120,70,50,.10);
+    --disp:"Fraunces",Georgia,serif; --body:"Nunito",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
+    font-size:17px;line-height:1.62;font-weight:400;
+    background-image:radial-gradient(rgba(160,110,70,.035) 1px,transparent 1px);background-size:22px 22px}
+  .wrap{max-width:660px;margin:0 auto;padding:0 20px}
+  h1,h2,h3{font-family:var(--disp);font-weight:800;line-height:1.08;letter-spacing:-.01em;margin:0}
+  .serif-soft{font-family:var(--disp);font-weight:600;font-style:italic}
+  .berry{color:var(--berry)}
+  a{color:inherit}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:20;background:rgba(246,239,228,.82);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line)}
+  nav .in{max-width:660px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
+  nav .logo{font-family:var(--disp);font-weight:800;font-size:18px;display:flex;align-items:center;gap:7px}
+  nav .logo .dot{color:var(--berry)}
+  nav .navcta{font-family:var(--body);font-weight:800;font-size:13.5px;background:var(--ink);color:var(--cream);
+    text-decoration:none;padding:9px 15px;border-radius:999px}
+
+  /* HERO */
+  .hero{padding:34px 0 12px;position:relative;overflow:hidden}
+  .eyebrow{display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:12.5px;
+    text-transform:uppercase;letter-spacing:1.2px;color:var(--berry-deep);
+    background:var(--cream);border:1px solid var(--line);padding:6px 13px;border-radius:999px}
+  h1{font-size:clamp(33px,7.4vw,52px);margin:16px 0 12px}
+  h1 em{font-style:italic;font-weight:600;color:var(--berry)}
+  .sub{font-size:18.5px;color:#5c4a3f;margin:0 0 22px;max-width:34ch}
+  /* mockup herói (a tela da calculadora) */
+  .device{position:relative;background:var(--plum);border-radius:30px;padding:12px;
+    box-shadow:var(--shadow);max-width:340px;margin:8px 0 6px}
+  .device:before{content:"";position:absolute;top:11px;left:50%;transform:translateX(-50%);
+    width:52px;height:5px;border-radius:5px;background:rgba(255,255,255,.22)}
+  .screen{background:linear-gradient(160deg,#fff,#fff6ef);border-radius:22px;padding:18px 16px 16px;overflow:hidden}
+  .screen .bartop{font-family:var(--body);font-weight:800;font-size:12px;color:var(--berry);
+    text-transform:uppercase;letter-spacing:.6px}
+  .screen .prod{font-family:var(--disp);font-weight:600;font-size:15px;color:var(--ink);margin:2px 0 12px}
+  .pricebox{background:linear-gradient(140deg,var(--berry),var(--caramel));border-radius:16px;padding:15px 16px;color:#fff}
+  .pricebox .lab{font-size:11.5px;opacity:.9;text-transform:uppercase;letter-spacing:.6px}
+  .pricebox .antes{font-size:14px;opacity:.85;text-decoration:line-through}
+  .pricebox .big{font-family:var(--disp);font-weight:800;font-size:44px;line-height:1;margin-top:2px;
+    animation:pop .7s .2s both}
+  .pricebox .big .un{font-size:16px;font-weight:600;opacity:.9}
+  .pricebox .lucro{margin-top:12px;background:rgba(255,255,255,.18);border-radius:11px;
+    padding:9px 12px;display:flex;justify-content:space-between;font-size:13.5px;font-weight:700}
+  @keyframes pop{from{opacity:0;transform:scale(.8) translateY(6px)}to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.pricebox .big{animation:none}}
+  .cta{display:block;text-align:center;text-decoration:none;background:var(--berry);color:#fff;
+    font-family:var(--body);font-weight:800;font-size:18.5px;padding:17px;border-radius:15px;
+    box-shadow:0 12px 26px rgba(194,58,91,.28);margin:20px 0 0;transition:transform .12s}
+  .cta:active{transform:translateY(1px)}
+  .cta.zap{background:#25d366;box-shadow:0 12px 26px rgba(37,211,102,.28)}
+  .selo{font-size:14px;color:var(--ink-soft);margin-top:10px}
+  .selo b{color:var(--ink)}
+
+  /* SECOES */
+  section{padding:40px 0}
+  .band{background:var(--plum);color:var(--cream)}
+  .band h2,.band .k{color:#fff}
+  .band .vs .item{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);color:#f3e7dd}
+  .k{display:inline-block;color:var(--berry-deep);font-weight:800;font-size:12.5px;
+    text-transform:uppercase;letter-spacing:1.1px}
+  h2{font-size:clamp(25px,5.6vw,34px);margin:8px 0 16px}
+  p{margin:0 0 15px}
+  .lede{font-size:19px;color:#5c4a3f}
+
+  .passos{display:flex;flex-direction:column;gap:0;border-left:2px solid var(--line);margin-left:6px}
+  .passo{position:relative;padding:0 0 26px 26px}
+  .passo:last-child{padding-bottom:0}
+  .passo .n{position:absolute;left:-17px;top:-2px;width:32px;height:32px;border-radius:50%;
+    background:var(--berry);color:#fff;font-family:var(--disp);font-weight:800;
+    display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-sm)}
+  .passo b{font-family:var(--disp);font-weight:800;font-size:18.5px;display:block;margin-bottom:2px}
+  .passo span{color:var(--ink-soft);font-size:15.5px}
+
+  .vs{display:flex;flex-direction:column;gap:11px}
+  .vs .item{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);
+    border-radius:15px;padding:15px 16px;box-shadow:var(--shadow-sm)}
+  .vs .mk{flex:0 0 auto;font-weight:900;font-size:18px;line-height:1.3}
+  .vs .x{color:#c0475f}.vs .ok{color:#2f9e6f}
+  .vs .win{background:linear-gradient(150deg,var(--cream),#fff);border:1.5px solid var(--berry)}
+
+  .leva{background:linear-gradient(155deg,#fff,var(--cream));border:1px solid var(--line);
+    border-radius:20px;padding:22px 20px;box-shadow:var(--shadow)}
+  .leva h3{font-size:21px;margin-bottom:6px}
+  .leva .desc{color:var(--ink-soft);font-size:15.5px}
+  .escopo{font-size:14px;color:var(--ink-soft);margin-top:14px;padding-top:14px;border-top:1px dashed var(--line)}
+  .preco{text-align:center;margin:22px 0 8px}
+  .preco .por{font-family:var(--disp);font-weight:800;font-size:52px;color:var(--berry);line-height:1}
+  .preco .por small{font-family:var(--body);font-size:16px;color:var(--ink-soft);font-weight:700}
+
+  .faq{border-top:1px solid var(--line)}
+  .faq .q{padding:16px 2px 6px;font-family:var(--disp);font-weight:800;font-size:17.5px}
+  .faq .a{padding:0 2px 16px;color:var(--ink-soft);font-size:15.5px;border-bottom:1px solid var(--line)}
+
+  .gar{background:var(--cream);border:1px solid var(--line);border-radius:20px;padding:22px;text-align:center;box-shadow:var(--shadow-sm)}
+  .gar .sel{font-size:34px}
+  .gar h3{font-size:20px;margin:8px 0 6px}
+  .gar p{margin:0;color:var(--ink-soft);font-size:15.5px}
+
+  footer{padding:30px 0 46px;text-align:center;color:var(--ink-soft);font-size:13px;line-height:1.7}
+  footer .logo{font-family:var(--disp);font-weight:800;font-size:17px;color:var(--ink)}
+
+  .device .shot{width:100%;height:auto;display:block;border-radius:20px}
+  .hero-cap{font-family:var(--disp);font-weight:600;font-style:italic;font-size:15px;color:var(--ink-soft);margin:12px 0 0}
+  .marquee{max-width:660px;margin:0 auto;overflow-x:auto;padding:6px 0 12px;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
+  .marquee::-webkit-scrollbar{display:none}
+  .marquee .track{display:flex;gap:14px;width:max-content;animation:slide 24s linear infinite}
+  .marquee:hover .track,.marquee:active .track{animation-play-state:paused}
+  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .marquee .g{flex:0 0 248px;background:var(--plum);border-radius:24px;padding:9px;box-shadow:var(--shadow)}
+  .marquee .g img{width:100%;display:block;border-radius:17px}
+  .marquee .g .cap{color:var(--cream);text-align:center;font-family:var(--disp);font-weight:600;font-size:14px;padding:9px 4px 4px}
+  .marquee.orcs .track{animation-duration:38s}
+  .marquee .og{flex:0 0 220px;border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
+  .marquee .og img{width:100%;display:block}
+  .wacap{text-align:center;font-size:13px;margin:12px 0 0}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="in">
+    <span class="logo">🎂 Lucro Doceira<span class="dot">.</span></span>
+    <a class="navcta" data-checkout href="#">Quero meu preço certo</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">🧁 Pra quem vende doce por encomenda</span>
+    <h1>Você pode estar <em>pagando pra trabalhar</em> nos seus doces.</h1>
+    <p class="sub">E o pior: sem perceber. Descubra o preço certo de cada doce, com o seu lucro, em 5 minutos.</p>
+    <div class="device"><video class="shot" autoplay muted loop playsinline poster="img/calc-preco.jpeg" aria-label="Vídeo mostrando o uso real da calculadora, do ingrediente ao orçamento pronto"><source src="video/calculadora-demo.mp4" type="video/mp4"></video></div>
+    <p class="hero-cap">Do "acho que é R$1,50" pro R$2,20 certo, com o seu lucro na conta.</p>
+    <a class="cta zap" data-checkout href="#">Quero saber meu preço certo</a>
+    <div class="selo"><span style="text-decoration:line-through;opacity:.65">R$ 47</span> <b>R$ 37</b> no lançamento, uma vez. É seu pra sempre. Acesso na hora.</div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <span class="k">A real que ninguém conta</span>
+    <h2>Você faz com carinho e no fim não sobra nada</h2>
+    <p class="lede">Vira a noite, entrega tudo lindo, e aí bate a pergunta: quanto cobrar?</p>
+    <p>E você <b>chuta</b>. Olha o que a vizinha cobra, arredonda e manda. No fim do mês o dinheiro sumiu e você não sabe se lucrou ou se pagou pra fazer. Pior: quando o cliente fala "tá caro", você abaixa. E trabalha mais ainda, por menos.</p>
+    <p>E isso não é só no fim do mês: é o próximo pedido que chegar hoje no seu WhatsApp. Sem essa conta pronta, ele vai ser cobrado do mesmo jeito de sempre.</p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <span class="k">Como funciona</span>
+    <h2>Digitar e ver. Só isso.</h2>
+    <div class="passos">
+      <div class="passo"><div class="n">1</div><b>Põe os ingredientes</b><span>Quanto pagou e quanto usou. A conta é automática.</span></div>
+      <div class="passo"><div class="n">2</div><b>Soma o que ninguém soma</b><span>O seu tempo, o gás, a embalagem. É aqui que a maioria perde dinheiro.</span></div>
+      <div class="passo"><div class="n">3</div><b>Sai o preço, com lucro</b><span>E o orçamento pronto pra mandar no WhatsApp do cliente.</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="k">Veja por dentro</span>
+    <h2>É simples assim, no seu celular</h2>
+  </div>
+  <div class="marquee"><div class="track">
+    <div class="g"><img src="img/calc-receita.jpeg" alt="Tela de ingredientes"><div class="cap">Põe os ingredientes</div></div>
+    <div class="g"><img src="img/calc-preco.jpeg" alt="Tela de preço"><div class="cap">Vê o preço com lucro</div></div>
+    <div class="g"><img src="img/calc-orcamento.jpeg" alt="Tela de orçamento"><div class="cap">Monta o orçamento</div></div>
+    <div class="g" aria-hidden="true"><img src="img/calc-receita.jpeg" alt=""><div class="cap">Põe os ingredientes</div></div>
+    <div class="g" aria-hidden="true"><img src="img/calc-preco.jpeg" alt=""><div class="cap">Vê o preço com lucro</div></div>
+    <div class="g" aria-hidden="true"><img src="img/calc-orcamento.jpeg" alt=""><div class="cap">Monta o orçamento</div></div>
+  </div></div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <span class="k">E o melhor</span>
+    <h2>O orçamento já sai pronto pro cliente</h2>
+    <p style="color:#f3e7dd">Você nem digita no WhatsApp. A calculadora monta a mensagem com todos os itens e o total. Você só manda.</p>
+  </div>
+  <div class="marquee orcs"><div class="track">
+    <div class="og"><img src="img/orcamento-1.jpeg" alt="Exemplo de orçamento enviado pelo WhatsApp"></div>
+    <div class="og"><img src="img/orcamento-2.jpeg" alt="Exemplo de orçamento enviado pelo WhatsApp"></div>
+    <div class="og"><img src="img/orcamento-3.jpeg" alt="Exemplo de orçamento enviado pelo WhatsApp"></div>
+    <div class="og" aria-hidden="true"><img src="img/orcamento-1.jpeg" alt=""></div>
+    <div class="og" aria-hidden="true"><img src="img/orcamento-2.jpeg" alt=""></div>
+    <div class="og" aria-hidden="true"><img src="img/orcamento-3.jpeg" alt=""></div>
+  </div></div>
+  <div class="wrap">
+    <p class="wacap" style="color:#d8c6bb">Exemplo do orçamento que a ferramenta monta pra você enviar.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="k">Por que não é mais do mesmo</span>
+    <h2>A planilha grátis e os apps te deixam na mão</h2>
+    <div class="vs">
+      <div class="item"><span class="mk x">✕</span><div><b>A planilha grátis</b> que você baixa por aí é genérica: não calcula rendimento de receita nem o seu tempo. Por isso você ainda cobra errado usando ela.</div></div>
+      <div class="item"><span class="mk x">✕</span><div><b>Os apps</b> cobram assinatura, e travam até de quem já pagou, bem na hora de mandar o orçamento pro cliente.</div></div>
+      <div class="item win"><span class="mk ok">✓</span><div><b>Aqui você paga uma vez e a calculadora é sua.</b> Feita pra doce, com o seu tempo e os custos escondidos, e ainda monta o orçamento pro WhatsApp.</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="k">O que você leva</span>
+    <h2>Sua Calculadora de Preço</h2>
+    <div class="leva">
+      <h3>A Calculadora de Preço</h3>
+      <p class="desc">Calcula qualquer receita, mostra o preço por unidade e do cento, e monta orçamento de vários itens (doce, salgado, bolo) pra mandar no WhatsApp. No celular, offline, é sua.</p>
+      <div class="escopo">É uma calculadora de preço e orçamento. Não é app de agenda ou gestão: é a ferramenta que te diz, sem enrolação, quanto cobrar.</div>
+    </div>
+    <div class="preco"><span style="display:block;font-size:16px;color:var(--ink-soft);text-decoration:line-through">R$ 47</span><span class="por">R$ 37<small> uma vez, preço de lançamento</small></span></div>
+    <a class="cta" data-checkout href="#">Quero parar de trabalhar de graça</a>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="k">Ficou com dúvida?</span>
+    <h2>As perguntas de sempre</h2>
+    <div class="faq">
+      <div class="q">"Não sei mexer em planilha."</div>
+      <div class="a">Não precisa. Você só digita o que pagou. A calculadora faz a conta sozinha.</div>
+      <div class="q">"Já tem app grátis pra isso."</div>
+      <div class="a">Tem, e ele cobra assinatura, pede login e vive saindo do ar ou travando bem na hora que você precisa mandar o orçamento. Esse aqui você compra uma vez, sem login, funciona offline no seu celular.</div>
+      <div class="q">"É seguro?"</div>
+      <div class="a">Seus dados ficam só no seu celular, nada vai pra internet. E você tem 7 dias de garantia.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="gar">
+      <div class="sel">🛡️</div>
+      <h3>Garantia de 7 dias</h3>
+      <p>É seu direito por lei (art. 49 do CDC). Testou e não era pra você? Devolvo seu dinheiro, sem pergunta.</p>
+    </div>
+    <p style="text-align:center;margin-top:22px;font-size:15.5px;color:var(--ink-soft)">O próximo pedido que chegar vai ser cobrado do jeito de sempre, ou com a conta certa. A diferença é ter isso pronto <b style="color:var(--ink)">antes</b> dele chegar.</p>
+    <div class="preco"><span style="display:block;font-size:16px;color:var(--ink-soft);text-decoration:line-through">R$ 47</span><span class="por">R$ 37<small> uma vez, preço de lançamento</small></span></div>
+    <a class="cta zap" data-checkout href="#">Quero ver meu lucro certo</a>
+    <div class="selo" style="text-align:center">Pagamento seguro · Pix ou cartão</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo">🎂 Lucro Doceira</div>
+    <p style="margin-top:8px">Ferramenta de apoio à precificação. O resultado depende dos dados que você inserir.</p>
+  </div>
+</footer>
+
+<script>
+  var CHECKOUT_URL = "https://pay.cakto.com.br/39mddzt_1018287";
+
+  // Repassa a query string inteira (UTMs + fbclid + gclid) da landing pro checkout.
+  // Sem isso a venda chega na Cakto sem atribuicao e nao da pra saber qual criativo vendeu
+  // (erro F4 do funil-montar). Persiste em sessionStorage porque o visitante pode navegar
+  // pras paginas de ferramenta e voltar, e ai a query string original ja se perdeu da URL.
+  var TRACK_KEYS = ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","fbclid","gclid","sck","src"];
+
+  function coletarRastreio(){
+    var atual = new URLSearchParams(location.search);
+    var salvo = {};
+    try { salvo = JSON.parse(sessionStorage.getItem("ld_track") || "{}"); } catch(e){}
+    TRACK_KEYS.forEach(function(k){
+      var v = atual.get(k);
+      if (v) salvo[k] = v;
+    });
+    try { sessionStorage.setItem("ld_track", JSON.stringify(salvo)); } catch(e){}
+    return salvo;
+  }
+
+  function montarCheckout(){
+    var params = coletarRastreio();
+    var url = new URL(CHECKOUT_URL);
+    Object.keys(params).forEach(function(k){ url.searchParams.set(k, params[k]); });
+    return url.toString();
+  }
+
+  var destino = montarCheckout();
+  document.querySelectorAll("[data-checkout]").forEach(function(a){ a.setAttribute("href", destino); });
+</script>
+</body>
+</html>
