@@ -346,6 +346,34 @@
 
   var destino = montarCheckout();
   document.querySelectorAll("[data-checkout]").forEach(function(a){ a.setAttribute("href", destino); });
+
+  // InitiateCheckout: o unico sinal de INTENCAO que esta pagina produz.
+  // Sem ele o funil so tem PageView de um lado e Purchase do outro, e a etapa
+  // "a pagina convence?" fica sem medida: o gatilho 2 de kill (CONSTANTES secao 3,
+  // intencao zero apos 2x o CPA alvo) nao pode ser aplicado. Medido em 08/08/2026:
+  // 41 landing page views e ZERO InitiateCheckout, porque o evento nao existia aqui.
+  // O clique que o pixel capturava sozinho era SubscribedButtonClick, que nao serve:
+  // nao e evento padrao, nao alimenta otimizacao nem gatilho de kill.
+  //
+  // Purchase continua fora daqui (regra dura de CONSTANTES secao 7): uma origem so.
+  //
+  // eventID casa este evento com um eventual InitiateCheckout vindo da CAPI, para o
+  // Meta deduplicar em vez de contar a mesma intencao duas vezes.
+  document.querySelectorAll("[data-checkout]").forEach(function(a){
+    a.addEventListener("click", function(){
+      if (typeof fbq !== "function") return;
+      try {
+        fbq("track", "InitiateCheckout", {
+          content_name: "Calculadora de Preco",
+          currency: "BRL",
+          value: 37.00
+        }, { eventID: "ic-" + Date.now() + "-" + Math.random().toString(36).slice(2, 8) });
+      } catch (e) {}
+      // sem preventDefault e sem espera: o link navega normalmente. O pixel usa
+      // sendBeacon, que sobrevive a saida da pagina. Segurar a navegacao para
+      // "garantir" o evento custa conversao, e a troca nao compensa.
+    }, { passive: true });
+  });
 </script>
 </body>
 </html>
