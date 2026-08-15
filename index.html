@@ -13,7 +13,7 @@
   :root{
     --paper:#f6efe4; --paper2:#fffdf9; --card:#fffdf9;
     --ink:#3a2a22; --ink-soft:#8a7869; --line:#e8ddcb;
-    --berry:#c23a5b; --berry-deep:#9c2c48; --caramel:#dd9455; --cream:#fbf5ea;
+    --berry:#d24f6e; --berry-deep:#a83a56; --caramel:#f0a05a; --cream:#fbf5ea;
     --plum:#40222f;
     --shadow:0 18px 40px rgba(120,70,50,.14); --shadow-sm:0 6px 18px rgba(120,70,50,.10);
     --disp:"Fraunces",Georgia,serif; --body:"Nunito",system-ui,sans-serif;
@@ -117,6 +117,19 @@
   .gar .sel{font-size:34px}
   .gar h3{font-size:20px;margin:8px 0 6px}
   .gar p{margin:0;color:var(--ink-soft);font-size:15.5px}
+
+  .depos{display:flex;flex-direction:column;gap:13px}
+  .depo{background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:19px 20px;box-shadow:var(--shadow-sm)}
+  .depo .estrelas{color:var(--caramel);font-size:15px;letter-spacing:2px;margin-bottom:9px}
+  .depo p{font-size:16px;color:var(--ink);margin:0 0 12px;font-style:italic;line-height:1.55}
+  .depo .quem{display:flex;align-items:center;gap:10px}
+  .depo .av{flex:0 0 auto;width:38px;height:38px;border-radius:50%;
+    background:linear-gradient(140deg,var(--berry),var(--caramel));color:#fff;
+    font-family:var(--disp);font-weight:800;font-size:15px;
+    display:flex;align-items:center;justify-content:center}
+  .depo .quem b{font-size:14.5px;color:var(--ink);display:block}
+  .depo .quem span{font-size:13px;color:var(--ink-soft)}
 
   footer{padding:30px 0 46px;text-align:center;color:var(--ink-soft);font-size:13px;line-height:1.7}
   footer .logo{font-family:var(--disp);font-weight:800;font-size:17px;color:var(--ink)}
@@ -268,6 +281,30 @@
 
 <section>
   <div class="wrap">
+    <span class="k">Quem já usa</span>
+    <h2>Confeiteiras que já acharam o preço certo</h2>
+    <div class="depos">
+      <div class="depo">
+        <div class="estrelas">★★★★★</div>
+        <p>"Eu achava que estava tendo lucro, mas quando coloquei os ingredientes, embalagem, gás e tudo mais no cálculo, vi que estava cobrando muito abaixo. Agora consigo colocar o preço certo sem medo de estar cobrando caro."</p>
+        <div class="quem"><div class="av">C</div><div><b>Camila</b><span>confeiteira há 3 anos</span></div></div>
+      </div>
+      <div class="depo">
+        <div class="estrelas">★★★★★</div>
+        <p>"Antes eu ficava horas fazendo conta no papel e na calculadora toda vez que mudava o preço de um ingrediente. Agora é só colocar os valores dos insumos e o preço já sai certinho. Pra mim foi uma mão na roda."</p>
+        <div class="quem"><div class="av">J</div><div><b>Juliana</b><span>bolos e doces artesanais</span></div></div>
+      </div>
+      <div class="depo">
+        <div class="estrelas">★★★★★</div>
+        <p>"O que mais gostei foi conseguir enxergar quanto realmente sobra em cada encomenda. Eu tinha produtos que vendia bastante e achava que davam um bom lucro, mas descobri que alguns quase não compensavam. Hoje consigo tomar decisões muito melhores."</p>
+        <div class="quem"><div class="av">F</div><div><b>Fernanda</b><span>confeiteira e empreendedora</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
     <span class="k">O que você leva</span>
     <h2>Sua Calculadora de Preço</h2>
     <div class="leva">
@@ -351,14 +388,14 @@
   // Sem ele o funil so tem PageView de um lado e Purchase do outro, e a etapa
   // "a pagina convence?" fica sem medida: o gatilho 2 de kill (CONSTANTES secao 3,
   // intencao zero apos 2x o CPA alvo) nao pode ser aplicado. Medido em 08/08/2026:
-  // 41 landing page views e ZERO InitiateCheckout, porque o evento nao existia aqui.
-  // O clique que o pixel capturava sozinho era SubscribedButtonClick, que nao serve:
-  // nao e evento padrao, nao alimenta otimizacao nem gatilho de kill.
+  // 41 landing page views e zero InitiateCheckout, porque o evento nao existia aqui.
+  // O clique automatico que o pixel captura sozinho e SubscribedButtonClick, que
+  // nao serve: nao e evento padrao e nao alimenta otimizacao nem gatilho de kill.
   //
   // Purchase continua fora daqui (regra dura de CONSTANTES secao 7): uma origem so.
   //
-  // eventID casa este evento com um eventual InitiateCheckout vindo da CAPI, para o
-  // Meta deduplicar em vez de contar a mesma intencao duas vezes.
+  // eventID casa este evento com um eventual InitiateCheckout da CAPI, para o Meta
+  // deduplicar em vez de contar intencao duas vezes.
   document.querySelectorAll("[data-checkout]").forEach(function(a){
     a.addEventListener("click", function(){
       if (typeof fbq !== "function") return;
